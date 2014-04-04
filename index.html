@@ -1,0 +1,47 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+
+		var getUserMedia;
+		var browserUserMedia =	navigator.webkitGetUserMedia	||	// WebKit
+                        navigator.mozGetUserMedia	||	// Mozilla FireFox
+                        navigator.getUserMedia;	
+
+
+getUserMedia = browserUserMedia.bind( navigator );
+
+getUserMedia(
+    {
+        audio: false,
+        video: true
+    },
+    function( stream ) {
+    	// alert(1);
+        // console.log( stream );
+
+        videoElement = document.getElementById( 'video' );
+        videoElement.src = URL.createObjectURL( stream );
+
+        // console.log(videoElement);
+    },
+    function( err ) {
+        console.log( err );
+    }
+);
+
+	</script>
+
+	<style type="text/css">
+		#video {
+/*			 -webkit-filter: sepia(1);			*/
+		}
+	</style>
+
+</head>
+<body>
+
+	<video id="video" autoplay></video>
+
+</body>
+</html>
